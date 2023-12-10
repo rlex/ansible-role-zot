@@ -1,0 +1,5 @@
+- name: restart zot
+  systemd:
+    name: zot
+    state: restarted
+    daemon_reload: true

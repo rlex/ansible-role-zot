@@ -1,0 +1,67 @@
+zot_registry_version: 2.0.0-rc7
+zot_user: zot
+zot_group: "{{zot_user}}"
+zot_registry_config:
+  distSpecVersion: 1.1.0-dev
+  storage:
+    rootDirectory: /tmp/zot
+    dedupe: true
+  http:
+    address: 0.0.0.0
+    port: 8080
+  log:
+   level: info
+  extensions:
+    metrics:
+      enable: true
+      prometheus:
+        path: /metrics
+    search:
+      enable: true
+      cve:
+        updateInterval: 2h
+    scrub:
+      enable: true
+      interval: 24h
+    ui:
+      enable: true
+    sync:
+      enable: true
+      registries:
+        - urls: https://index.docker.io
+          content:
+            destination: /docker.io
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+        - urls: https://registry.gitlab.com
+          content:
+            destination: /registry.gitlab.com
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+        - urls: https://ghcr.io
+          content:
+            destination: /ghcr.io
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+        - urls: https://quay.io
+          content:
+            destination: /quay.io
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+        - urls: https://gcr.io
+          content:
+            destination: /gcr.io
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+        - urls: https://registry.k8s.io
+          content:
+            destination: /registry.k8s.io
+            prefix: "**"
+          onDemand: true
+          tlsVerify: true
+zot_registry_credentials:
