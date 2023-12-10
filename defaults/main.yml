@@ -64,4 +64,4 @@ zot_registry_config:
             prefix: "**"
           onDemand: true
           tlsVerify: true
-zot_registry_credentials:
+zot_registry_credentials: {}

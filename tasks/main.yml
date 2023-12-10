@@ -29,6 +29,16 @@
     group: "{{zot_group}}"
     mode: 0700
 
+- name: Create zot storage folder
+  file:
+    path: "{{ zot_registry_config.storage.rootDirectory }}"
+    state: directory
+    owner: "{{zot_user}}"
+    group: "{{zot_group}}"
+    mode: 0700
+  when:
+    - zot_registry_config.storage.rootDirectory is defined
+
 - name: Copy service file
   template:
     src: zot.service.j2
