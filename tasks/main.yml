@@ -58,4 +58,4 @@
     mode: "0600"
   # not passing for now
   #    validate: "/usr/local/bin/zot verify %s"
-  notify: restart zot
+  notify: Restart zot
