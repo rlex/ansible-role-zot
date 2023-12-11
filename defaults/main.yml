@@ -1,3 +1,4 @@
+---
 zot_registry_version: 2.0.0-rc7
 zot_user: zot
 zot_group: "{{zot_user}}"
@@ -7,10 +8,10 @@ zot_registry_config:
     rootDirectory: /tmp/zot
     dedupe: true
   http:
-    address: 0.0.0.0
+    address: "0.0.0.0"
     port: 8080
   log:
-   level: info
+    level: info
   extensions:
     metrics:
       enable: true
