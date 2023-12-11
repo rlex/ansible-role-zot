@@ -1,0 +1,4 @@
+addr:
+  tcp://instance:8080:
+    title: zot port is reachable
+    reachable: true
