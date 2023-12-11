@@ -1,4 +1,8 @@
 ---
+- name: Detect host system architecture
+  ansible.builtin.set_fact:
+    zot_arch: "{{ zot_arch_table[ansible_architecture].arch }}"
+
 - name: Create system group
   ansible.builtin.group:
     name: "{{ zot_user }}"
@@ -15,7 +19,7 @@
 
 - name: Download zot binary
   ansible.builtin.get_url:
-    url: https://github.com/project-zot/zot/releases/download/v{{ zot_registry_version }}/zot-linux-amd64
+    url: https://github.com/project-zot/zot/releases/download/v{{ zot_registry_version }}/zot-linux-{{ zot_arch }}
     dest: /usr/local/bin/zot
     owner: root
     group: root
