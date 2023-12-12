@@ -2,6 +2,18 @@
 - name: Converge
   hosts: all
 
+  vars:
+    zot_registry_htpasswd:
+      - registry:$2y$05$SEz6.UxATCqZlx3K/fbkzubujuSoeaFYcCP5FTcqGkqOgaO0Kx/YO
+      - registry2:$2y$05$SEz6.UxATCqZlx3K/fbkzubujuSoeaFYcCP5FTcqGkqOgaO0Kx/Y0
+    zot_registry_credentials:
+      127.0.0.1:8008:
+        username: user
+        password: pass
+      registry2:5000:
+        username: user2
+        password: pass2
+
   pre_tasks:
     - name: Update apt cache.
       ansible.builtin.apt:

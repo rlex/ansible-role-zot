@@ -66,3 +66,4 @@ zot_registry_config:
           onDemand: true
           tlsVerify: true
 zot_registry_credentials: {}
+zot_registry_htpasswd: []

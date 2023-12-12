@@ -14,9 +14,8 @@ galaxy_info:
       versions:
         - all
     - name: CentOS
-      versions: 
+      versions:
         - all
-      
 
   galaxy_tags:
     - docker

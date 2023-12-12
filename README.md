@@ -2,6 +2,8 @@
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Default config](#default-config)
+- [Basic auth](#basic-auth)
+- [Upstream repositories credentials](#upstream-repositories-credentials)
 - [Variables](#variables)
 
 ## Description
@@ -100,13 +102,63 @@ Default zot config which will get installed with this role, with some comments (
           tlsVerify: true
 ```
 
+## Basic auth
+Zot have support for [some auth methods](https://zotregistry.io/v1.4.3/articles/authn-authz/), including htpasswd (with basic auth)  
+To generate zot-compatible htpasswd entry, run 
+```shell
+htpasswd -Bn username
+```
+
+And put generated line to zot_registry_htpasswd array: 
+```yaml
+zot_registry_htpasswd:
+  - registry:$2y$05$SEz6.UxATCqZlx3K/fbkzubujuSoeaFYcCP5FTcqGkqOgaO0Kx/YO
+```
+
+It will put that entry (or entries) to /etc/zot/htpasswd file which you can then use for auth in config:
+```yaml
+http:
+...
+  auth:
+    htpasswd:
+      path: /etc/zot/htpasswd
+}
+```
+Please note that auth is not enabled in default config, so you need to configure it manually
+
+## Upstream repositories credentials
+If you want to mirror upstream registries that require auth, you can use zot_registry_credentials to generate file for authorization:
+```yaml
+zot_registry_credentials:
+  127.0.0.1:8008:
+    username: user
+    password: pass
+  registry2:5000:
+    username: user2
+    password: pass2
+```
+
+It will be created at path /etc/zot/credentials.json, which you can then use in your config:
+```yaml
+extensions:
+  sync:
+    credentialsFile: /etc/zot/credentials.json
+    registries: 
+      urls: 
+        - https://registy2:5000
+...
+```
+
+It's probably good idea to encrypt this variable using ansible-vault or something similar.
+
 
 ## Variables
 
-| Variable                 | Format | Default value     | Description                         |
-| ------------------------ | ------ | ----------------- | ----------------------------------- |
-| zot_registry_version     | string | 2.0.0-rc7         | version of zot registry to install  |
-| zot_registry_config      | dict   | see usage         | dict with zot main config file      |
-| zot_user                 | string | zot               | system user for running zot         |
-| zot_group                | string | alias to zot_user | system group for running zot        |
-| zot_registry_credentials | dict   | empty             | credentials for accessing upstreams |
+| Variable                 | Format | Default value     | Description                                        |
+| ------------------------ | ------ | ----------------- | -------------------------------------------------- |
+| zot_registry_version     | string | 2.0.0-rc7         | version of zot registry to install                 |
+| zot_registry_config      | dict   | see usage         | dict with zot main config file                     |
+| zot_user                 | string | zot               | system user for running zot                        |
+| zot_group                | string | alias to zot_user | system group for running zot                       |
+| zot_registry_htpasswd    | array  | `[]`              | users for zot basic auth                           |
+| zot_registry_credentials | dict   | `{}`              | credentials for authorizing on upstream registries |

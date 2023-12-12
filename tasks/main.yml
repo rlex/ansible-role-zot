@@ -63,3 +63,21 @@
   # not passing for now
   #    validate: "/usr/local/bin/zot verify %s"
   notify: Restart zot
+
+- name: Copy zot htpasswd
+  ansible.builtin.template:
+    src: htpasswd.j2
+    dest: /etc/zot/htpasswd
+    owner: "{{ zot_user }}"
+    group: "{{ zot_group }}"
+    mode: "0600"
+  notify: Restart zot
+
+- name: Copy zot credentials
+  ansible.builtin.template:
+    src: credentials.json.j2
+    dest: /etc/zot/credentials.json
+    owner: "{{ zot_user }}"
+    group: "{{ zot_group }}"
+    mode: "0600"
+  notify: Restart zot
