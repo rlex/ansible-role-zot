@@ -60,8 +60,8 @@
     owner: "{{ zot_user }}"
     group: "{{ zot_group }}"
     mode: "0600"
-  # not passing for now
-  #    validate: "/usr/local/bin/zot verify %s"
+# not working atm: https://github.com/project-zot/zot/issues/2144
+#    validate: /usr/local/bin/zot verify %s
   notify: Restart zot
 
 - name: Copy zot htpasswd
