@@ -1,5 +1,5 @@
 ---
-zot_registry_version: 2.0.0-rc7
+zot_registry_version: 2.0.0
 zot_user: zot
 zot_group: "{{ zot_user }}"
 zot_registry_config:
