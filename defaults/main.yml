@@ -1,9 +1,9 @@
 ---
-zot_registry_version: 2.0.0
+zot_registry_version: 2.1.1
 zot_user: zot
 zot_group: "{{ zot_user }}"
 zot_registry_config:
-  distSpecVersion: 1.1.0-dev
+  distSpecVersion: 1.1.0
   storage:
     rootDirectory: /tmp/zot
     dedupe: true
