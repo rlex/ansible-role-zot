@@ -8,7 +8,7 @@
 
 ## Description
 
-Ansible role for installing [zot registy](https://zotregistry.io/).
+Ansible role for installing [zot registy](https://zotregistry.dev/).
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Rewriting json to yaml is pretty straightforward and can be done with online too
 Default config should provide you with working installation of zot which will be suitable for acting as registry mirror.<br>
 Default zot config which will get installed with this role, with some comments (this is in no way all possible options for zot, just default config):
 ```yaml
-  distSpecVersion: 1.1.0-dev
+  distSpecVersion: 1.1.0
   storage:
     #use tmp for storage. This folder will be created automatically
     rootDirectory: /tmp/zot
