@@ -1,7 +1,7 @@
 ---
 - name: Detect host system architecture
   ansible.builtin.set_fact:
-    zot_arch: "{{ zot_arch_table[ansible_architecture].arch }}"
+    zot_arch: "{{ zot_arch_table[ansible_facts['architecture']].arch }}"
 
 - name: Create system group
   ansible.builtin.group:
